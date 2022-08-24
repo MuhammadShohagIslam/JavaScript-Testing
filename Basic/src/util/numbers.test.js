@@ -31,14 +31,18 @@ it("should yeild NaN if we do not provide any value in the function argument", (
     expect(result).toBeNaN();
 });
 
+// multiple expectation
 it("should yeild NaN for non-transformable values", () => {
     // Arrange
     const inputs = "invalid"
+    const input2 = {}
     // Act
     const result = transformToNumber(inputs);
+    const result2 = transformToNumber(input2);
     
     // Assert
     expect(result).toBeNaN();
+    expect(result2).toBeNaN();
 });
 
 /*
