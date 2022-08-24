@@ -1,5 +1,5 @@
 import { it, expect } from "vitest";
-import { add } from "./math";
+import { add, added} from "./math";
 /*
     *** Why Are You Test ***
         => It makes it easy to check our code, when changes to that code are 
@@ -153,5 +153,32 @@ it("should yeild 0 if an empty array is provided", () => {
     const result = add(numbers);
 
     // Assert
-    expect(result).not.toBe(0);
+    // expect(result).not.toBe(0);
 });
+
+it("should throw error if provided with multiple arguments instead of array", ()=>{
+    const num1 = 1;
+    const num2 = 2;
+
+    const resultFun = () => {
+        add(num1, num2)
+    }
+    expect(resultFun).toThrow()
+
+})
+
+/*
+    *** Testing For Thrown Errors & Error Messages ***
+    .toThrow(argument) => we can pass optional argument
+*/
+it("should throw error if provided with multiple arguments instead of array", ()=>{
+    const num1 = 1;
+    const num2 = 2;
+
+    const resultFun = () => {
+        added(num1, num2)
+    }
+    // if we want to excat error
+    expect(resultFun).toThrow(/is not iterable/)
+
+})
