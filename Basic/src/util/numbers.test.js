@@ -36,7 +36,7 @@ it("should yeild NaN for non-transformable values", () => {
     const inputs = "invalid"
     // Act
     const result = transformToNumber(inputs);
-
+    
     // Assert
     expect(result).toBeNaN();
 });
