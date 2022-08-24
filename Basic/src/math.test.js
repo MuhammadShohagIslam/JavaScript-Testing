@@ -46,8 +46,8 @@ it("should summarize string number of array", () => {
     const expectedResult = [number1, number2].reduce((acc, cur) => {
         return (acc += +cur);
     }, 0);
-  
-    expect(result).toBe(expectedResult)
+
+    expect(result).toBe(expectedResult);
 });
 /*
     *** Keep Our Test Simple ***
@@ -57,7 +57,7 @@ it("should summarize string number of array", () => {
 it("should summarize all number values in an array", () => {
     // Arrange
     //const numbers = [1,2,3,4,5] // it will complext
-    const numbers = [1,2] // it will simple, it will not effect, beacuse result will be always same.
+    const numbers = [1, 2]; // it will simple, it will not effect, beacuse result will be always same.
     // Act
     const result = add(numbers);
 
@@ -74,16 +74,16 @@ it("should summarize all number values in an array", () => {
         => We should test as many as possibile way to test our code,
         should try invalid value, it will be good for big application
 */
-it("should yeild NaN if a least one invalid number is provider", ()=>{
+it("should yeild NaN if a least one invalid number is provider", () => {
     // Arrange
-    const inputs = ['invalid', 1];
+    const inputs = ["invalid", 1];
 
     // Act
     const result = add(inputs);
 
     // Assert
     expect(result).toBeNaN();
-})
+});
 /*
     *** The idea behind tests ***
         => We want to detect problems even if our code right now
@@ -98,8 +98,60 @@ it("should yeild a correct sum if we provide numeric string array", () => {
     const result = add(numbers);
     // Assert
     const expectedResult = numbers.reduce((acc, cur) => {
-        return (acc += cur);
+        return (acc += +cur);
     }, 0);
-    expect(result).toBe(expectedResult)
+    expect(result).toBe(expectedResult);
+});
+
+/*
+    *** Writing More Test ***
+        => It is depend on we and our expectations, we can think different 
+        scenario that could occur, and write approriate tests.
+    But writing good test is an iterative process.
+        => means we write our tests, then we continue working on our code,
+        or may be we will also work on different code.
+*/
+it("should yeild 0 if an empty array is provided", () => {
+    // Arrange
+    const numbers = [];
+
+    // Act
+    const result = add(numbers);
+
+    // Assert
+    expect(result).toBe(0);
+});
+
+/*
+ *** Testing For Errors ***
+ */
+it("should throw error if no value is passed into function", () => {
+    try {
+        // Act
+        const result = add();
+    } catch (error) {
+        // Assert
+        expect(error).toBeDefined();
+    }
+});
+
+// easier way
+it("should throw error if no value is passed into function", ()=>{
+    const resultFn = () => {
+        add();
+    }
+    // expect of our function and check whether is throw
+    expect(resultFn).toThrow();
 })
 
+// if we want to use oposite we can use "not"
+it("should yeild 0 if an empty array is provided", () => {
+    // Arrange
+    const numbers = [];
+
+    // Act
+    const result = add(numbers);
+
+    // Assert
+    expect(result).not.toBe(0);
+});
