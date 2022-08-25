@@ -13,7 +13,6 @@ export function calculateResult(numberInputs){
     let result = "";
     try {
        const numbers = cleanNumbers(numberInputs);
-       console.log(numbers)
         result = add(numbers).toString();
     } catch (error) {
         result = error.message;

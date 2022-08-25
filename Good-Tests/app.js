@@ -1,4 +1,4 @@
-import { generateTextResult } from "./output.js";
+import { generateTextResult, outPutResult } from "./output.js";
 import { extractNumbersInput } from "./src/parser.js";
 import { calculateResult } from "./src/math.js";
 
@@ -7,8 +7,8 @@ function formSubmitHandler(event) {
     event.preventDefault();
     const numberInputs = extractNumbersInput(form);
     const result = calculateResult(numberInputs);
-    console.log(result)
-    generateTextResult(result);
+    const resultText = generateTextResult(result);
+    outPutResult(resultText);
 }
 
 form.addEventListener("submit", formSubmitHandler);
