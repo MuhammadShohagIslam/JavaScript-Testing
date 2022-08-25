@@ -6,12 +6,13 @@
         => Do not test any third-party code.(third-party packages, 
             libraries, framework, or feature thats build into the 
             environemt we are working with)
-        => Do not test those brower api, Nodejs packages.
+        => Do not test those browser api, Nodejs packages.
         => Do not test what we can not change.
         => Do not test if it works as intended
         => Do not test our server-side code implicitly via our client-side code. 
         => if its our own API,our own backend API, we are taking to,
-        then we would want to write separate tests that run independently from the front end tests in our backend project for our backend code.
+        then we would want to write separate tests that run independently 
+        from the front end tests in our backend project for our backend code.
         => Do test our client-side reaction to different responses and error.
 
 */
