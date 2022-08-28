@@ -1,47 +1,67 @@
-import { it, expect } from "vitest";
-
+import { it, expect, describe } from "vitest";
+import { beforeAll, beforeEach, afterAll, afterEach } from "vitest";
 import { User } from "./hook";
 
-it("should update the email", () => {
-    const testEmail = "test@gmail.com";
-    const newEmail = "a@gmail.com";
+const testEmail = "test@gmail.com";
+let user;
 
-    const user = new User(testEmail);
-    user.updateEmail(newEmail);
-
-    expect(user.email).toBe(newEmail);
+// this hook running firstly before code run
+beforeAll(() => {
+    user = new User(testEmail);
 });
 
-it("should have email property", () => {
-    const testEmail = "test@gmail.com";
-
-    const user = new User(testEmail);
-
-    expect(user).toHaveProperty("email");
+beforeEach(() => {
+    user = new User(testEmail);
 });
 
-it("should store the provided email value", () => {
-    const testEmail = "test@gmail.com";
-
-    const user = new User(testEmail);
-
-    expect(user.email).toBe(testEmail);
+afterEach(() => {
+    //    user = new User(testEmail);
 });
 
-it("should clear the email", () => {
-    const testEmail = "test@gmail.com";
-
-    const user = new User(testEmail);
-    user.clearEmail();
-
-    expect(user.email).toBe("");
+// this hook run finally after executed code
+afterAll(() => {
+    // cleaning up work, like databse data base close()
 });
 
-it("should still have email property after clearing the email value", () => {
-    const testEmail = "test@gmail.com";
+/*
+    concurrent method: which speed up our test execution time.
+    which very usefull huge test function, and execute paralall.
+    Concurrent execution can reduce the amount of time our tests
+    need to execute.
+*/
+// it.concurrent("should update the email", () => {
+//     const newEmail = "a@gmail.com";
 
-    const user = new User(testEmail);
-    user.clearEmail();
+//     user.updateEmail(newEmail);
 
-    expect(user).toHaveProperty("email");
+//     expect(user.email).toBe(newEmail);
+// });
+describe.concurrent("User Class", () => {
+    it("should update the email", () => {
+        const newEmail = "a@gmail.com";
+
+        user.updateEmail(newEmail);
+
+        expect(user.email).toBe(newEmail);
+    });
+
+    it("should have email property", () => {
+        expect(user).toHaveProperty("email");
+    });
+
+    it("should store the provided email value", () => {
+        expect(user.email).toBe(testEmail);
+    });
+
+    it("should clear the email", () => {
+        user.clearEmail();
+
+        expect(user.email).toBe("");
+    });
+
+    it("should still have email property after clearing the email value", () => {
+        user.clearEmail();
+
+        expect(user).toHaveProperty("email");
+    });
 });
