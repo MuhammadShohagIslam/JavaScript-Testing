@@ -18,5 +18,8 @@
             => Mocks are also about replacement, we also replace functions, 
             but mocks we often replace bigger parts of an API of certain module or code 
             that may provide some test-specific behavior instead.
-            => We can easily replace functionalities, that are defined in modules(own module, fil, third party module). which are replace all the functions in the there with empty spy functions.
+            => We can easily replace functionalities, that are defined in modules(own module, fil, third party module).
+             which are replace all the functions in the there with empty spy functions.
+
+            => Often use to rid side effects.
 */
