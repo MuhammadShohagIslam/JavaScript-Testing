@@ -70,6 +70,23 @@ describe("cleanNumbers()", () => {
         expect(cleanedNumbers[0]).toBeTypeOf("number");
     });
 
+    it("should return array of number value if array of string number is provided", () => {
+        // Arrange
+        const numbers = ["3", "4"];
+        // Act
+        const cleanedNumbers = cleanNumbers(numbers);
+
+        // expect(cleanedNumbers).toBe([3,4])
+        /*
+            toBe() which check exact equality, where throw error beacuse array
+            is object which is reference type, reference type is created new
+            object when we created, even if both has been same. That is why it is not working
+            e.x {} == {} is not the same, beacuse of reference type
+        */
+        // Assert
+        expect(cleanedNumbers).toEqual([3, 4]);
+    });
+
     it("should throw an error if an array with at least one empty string provided", () => {
         // Arrange
         const numbers = ["", 1];
