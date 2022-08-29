@@ -1,4 +1,5 @@
 import { it, describe, expect } from "vitest";
+
 import { HttpError, ValidationError } from "./errors";
 
 describe("HttpError Class", () => {
